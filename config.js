@@ -21,7 +21,9 @@ module.exports = {
 
   maxGuestsPerRsvp: 5,
 
-  // Background music: YouTube video ID (Shania Twain – You're Still The One). Leave '' to disable.
+  // Background music, no ads: path of an audio file inside public/ (e.g. 'music.mp3'). Takes priority over YouTube.
+  musicFile: '',
+  // Fallback: YouTube video ID (shows ads sometimes). Leave '' to disable.
   musicVideoId: 'KNZH-emehxA',
 
   // Link-preview (WhatsApp / iMessage) metadata

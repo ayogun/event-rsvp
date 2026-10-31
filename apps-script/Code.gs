@@ -56,19 +56,15 @@ function doPost(e) {
   }
 }
 
-// Uses the bound spreadsheet if there is one; otherwise creates one on first use and remembers it.
+// Answers are written to this spreadsheet (the ID is in its URL: docs.google.com/spreadsheets/d/<ID>/edit).
+// Leave empty only if this script is bound to the spreadsheet (Extensions > Apps Script).
+const SPREADSHEET_ID = '';
+
 function getSpreadsheet() {
-  const active = SpreadsheetApp.getActiveSpreadsheet();
-  if (active) return active;
-  const props = PropertiesService.getScriptProperties();
-  const id = props.getProperty('SHEET_ID');
-  if (id) return SpreadsheetApp.openById(id);
-  const created = SpreadsheetApp.create('Düğün Davetiyesi - Yanıtlar');
-  props.setProperty('SHEET_ID', created.getId());
-  return created;
+  return SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
 }
 
-// Run once from the editor to authorize the script and create the spreadsheet; the log shows its URL.
+// Run once from the editor to authorize the script and prepare the "Yanıtlar" tab; the log shows the spreadsheet URL.
 function setup() {
   const ss = getSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);

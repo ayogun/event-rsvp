@@ -18,13 +18,14 @@
   const syncCount = () => { countField.hidden = attending() !== 'yes'; };
   form.querySelectorAll('input[name=attending]').forEach((r) => r.addEventListener('change', syncCount));
 
-  // Background music (YouTube IFrame API). Browsers block sound until a user gesture,
-  // so playback starts on the first tap/click/key and the button toggles it.
+  // Background music: a hosted audio file (no ads) or, as a fallback, a YouTube video.
+  // Browsers block sound until a user gesture, so playback starts on the first tap/click/key
+  // and the button toggles it.
   const videoId = body.dataset.music || '';
+  const musicFile = body.dataset.musicFile || '';
   const musicBtn = $('music');
-  if (videoId) {
-    let player = null;
-    let ready = false;
+  if (musicFile || videoId) {
+    let controls = null;
     let wantPlay = false;
     let userPaused = false;
     let gestureHandled = false;
@@ -35,40 +36,52 @@
       $('music-label').textContent = on ? 'Müziği kapat' : 'Müziği aç';
     };
     const play = () => {
-      if (!ready) { wantPlay = true; return; }
-      player.playVideo();
+      if (!controls) { wantPlay = true; return; }
+      controls.play();
     };
 
-    window.onYouTubeIframeAPIReady = () => {
-      player = new YT.Player('yt-holder', {
-        width: 200,
-        height: 200,
-        videoId,
-        playerVars: {
-          autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, rel: 0,
-          loop: 1, playlist: videoId, origin: location.origin,
-        },
-        events: {
-          onReady: () => {
-            ready = true;
-            player.setVolume(60);
-            musicBtn.hidden = false;
-            if (wantPlay && !userPaused) player.playVideo();
+    if (musicFile) {
+      const audio = new Audio(musicFile);
+      audio.loop = true;
+      audio.volume = 0.6;
+      audio.preload = 'auto';
+      audio.addEventListener('playing', () => setUi(true));
+      audio.addEventListener('pause', () => setUi(false));
+      audio.addEventListener('error', () => { musicBtn.hidden = true; });
+      controls = { play: () => audio.play().catch(() => {}), pause: () => audio.pause() };
+      musicBtn.hidden = false;
+    } else {
+      window.onYouTubeIframeAPIReady = () => {
+        const player = new YT.Player('yt-holder', {
+          width: 200,
+          height: 200,
+          videoId,
+          playerVars: {
+            autoplay: 0, controls: 0, disablekb: 1, playsinline: 1, rel: 0,
+            loop: 1, playlist: videoId, origin: location.origin,
           },
-          onStateChange: (e) => setUi(e.data === YT.PlayerState.PLAYING),
-          onError: () => { musicBtn.hidden = true; },
-        },
-      });
-    };
-    const api = document.createElement('script');
-    api.src = 'https://www.youtube.com/iframe_api';
-    api.async = true;
-    document.head.appendChild(api);
+          events: {
+            onReady: () => {
+              controls = { play: () => player.playVideo(), pause: () => player.pauseVideo() };
+              player.setVolume(60);
+              musicBtn.hidden = false;
+              if (wantPlay && !userPaused) controls.play();
+            },
+            onStateChange: (e) => setUi(e.data === YT.PlayerState.PLAYING),
+            onError: () => { musicBtn.hidden = true; },
+          },
+        });
+      };
+      const api = document.createElement('script');
+      api.src = 'https://www.youtube.com/iframe_api';
+      api.async = true;
+      document.head.appendChild(api);
+    }
 
     musicBtn.addEventListener('click', () => {
       if (musicBtn.classList.contains('on')) {
         userPaused = true;
-        if (ready) player.pauseVideo();
+        if (controls) controls.pause();
       } else {
         userPaused = false;
         play();
