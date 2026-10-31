@@ -36,5 +36,5 @@ module.exports = {
   siteUrl: 'https://ayogun.github.io/event-rsvp',
 
   // Google Apps Script web-app URL that saves answers to your Google Sheet (see README).
-  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwRLF9rSH7nkU8cr_CElxLHxuNLPUepPzgiWnMVIeoJ5qysGcqDVXDv78iQRjrI32o/exec',
+  rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbz9BT04EUbo_X0IWt26D4oTE3l0eT81XnkW0bIfZGdF0I7fSAVqvXYgV3COTdddjkWr/exec',
 };

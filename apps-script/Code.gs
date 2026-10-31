@@ -58,7 +58,7 @@ function doPost(e) {
 
 // Answers are written to this spreadsheet (the ID is in its URL: docs.google.com/spreadsheets/d/<ID>/edit).
 // Leave empty only if this script is bound to the spreadsheet (Extensions > Apps Script).
-const SPREADSHEET_ID = '';
+const SPREADSHEET_ID = '1HaNAxppQ3ju-G0NOdSzaHxi3ecJ8T64eCHNwaTqi8jA';
 
 function getSpreadsheet() {
   return SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
