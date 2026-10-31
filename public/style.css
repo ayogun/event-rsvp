@@ -125,10 +125,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
   font-family: 'Great Vibes', cursive; font-weight: 400;
   font-size: clamp(2rem, 8.4vw, 3rem);
   line-height: 1.3; white-space: nowrap;
-  margin: 0; padding: .12em .3em;
+  margin: 0; padding: .22em .3em;
 }
 .names .amp { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: .5em; margin: 0 .15em; }
-.cap { font-size: 1.38em; }
+.cap { font-size: 1.65em; line-height: 0; }
 .divider { width: 120px; height: 10px; color: #d9b650; margin: 0; }
 .cover .hero-date { margin: .3rem 0 0; font-size: .74rem; letter-spacing: .28em; text-transform: uppercase; color: #e9cf7a; }
 .hint { margin: .45rem 0 0; font-size: .66rem; letter-spacing: .12em; color: #d9b650; animation: nudge 1.8s ease-in-out infinite; }
