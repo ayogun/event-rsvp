@@ -22,7 +22,7 @@ body {
   line-height: 1.6;
 }
 h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; margin: 0; }
-.script { font-family: 'Great Vibes', cursive; font-weight: 400; }
+.script { font-family: 'Allura', cursive; font-weight: 400; }
 .muted { color: var(--muted); }
 .center { text-align: center; }
 [hidden] { display: none !important; }
@@ -80,7 +80,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
   background: linear-gradient(180deg, rgba(60, 40, 20, .55), rgba(60, 40, 20, .05));
   opacity: var(--shade);
 }
-.monogram { font-family: 'Great Vibes', cursive; font-size: 3.2rem; line-height: 1.5; padding: 0 .3em; }
+.monogram { font-family: 'Allura', cursive; font-size: 3.2rem; line-height: 1.5; padding: 0 .3em; }
 
 /* Navy card stock with paper grain (cover + outer side of the folds) */
 .face.back, .cover {
@@ -122,13 +122,13 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
 .eyebrow::before, .eyebrow::after { content: ""; width: 28px; height: 1px; background: linear-gradient(90deg, transparent, #d9b650); }
 .eyebrow::after { transform: scaleX(-1); }
 .names {
-  font-family: 'Great Vibes', cursive; font-weight: 400;
+  font-family: 'Allura', cursive; font-weight: 400;
   font-size: clamp(2rem, 8.4vw, 3rem);
   line-height: 1.3; white-space: nowrap;
-  margin: 0; padding: .22em .3em;
+  margin: .5rem 0 0; padding: .2em .3em .22em;
 }
 .names .amp { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: .5em; margin: 0 .15em; }
-.cap { font-size: 1.65em; line-height: 0; }
+.cap { font-size: 1.2em; line-height: 1; }
 .divider { width: 120px; height: 10px; color: #d9b650; margin: 0; }
 .cover .hero-date { margin: .3rem 0 0; font-size: .74rem; letter-spacing: .28em; text-transform: uppercase; color: #e9cf7a; }
 .hint { margin: .45rem 0 0; font-size: .66rem; letter-spacing: .12em; color: #d9b650; animation: nudge 1.8s ease-in-out infinite; }
@@ -143,7 +143,7 @@ dt { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: 
 dd { margin: 0; font-size: .95rem; font-weight: 400; line-height: 1.3; }
 dd .muted { font-size: .8rem; font-weight: 300; }
 
-.greeting { font-family: 'Great Vibes', cursive; font-size: 1.7rem; margin: 0; line-height: 1.2; color: var(--accent-dark); }
+.greeting { font-family: 'Allura', cursive; font-size: 1.7rem; margin: 0; line-height: 1.2; color: var(--accent-dark); }
 .lead { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.3; margin: .15rem 0 .4rem; }
 .scroll-hint { color: var(--accent-dark); text-decoration: none; font-size: .75rem; letter-spacing: .1em; margin-top: .35rem; }
 .countdown { display: flex; justify-content: center; gap: .4rem; }
