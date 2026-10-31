@@ -152,6 +152,8 @@ dd .muted { font-size: .8rem; font-weight: 300; }
 .countdown span { font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 
 /* Scroll-driven mode (enabled by JS) */
+.openable { cursor: pointer; }
+.openable:focus-visible { outline: 2px solid #e9cf7a; outline-offset: 3px; }
 .scene.anim { height: 340svh; }
 .scene.anim .stage { position: sticky; top: 0; height: 100svh; }
 .scene.anim .sheet { top: 0; }

@@ -146,6 +146,34 @@
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     updateScene();
+
+    // Clicking (or Enter/Space on) the cover unfolds the letter by scrolling through the same animation
+    let autoScroll = 0;
+    const stopAuto = () => { cancelAnimationFrame(autoScroll); autoScroll = 0; };
+    const unfold = () => {
+      const range = scene.offsetHeight - window.innerHeight;
+      const from = window.scrollY;
+      const to = scene.getBoundingClientRect().top + from + range * 0.9;
+      if (range <= 0 || to <= from + 4) return;
+      stopAuto();
+      const dur = 2400;
+      const t0 = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - t0) / dur);
+        window.scrollTo({ top: from + (to - from) * ease(t), behavior: 'instant' });
+        autoScroll = t < 1 ? requestAnimationFrame(step) : 0;
+      };
+      autoScroll = requestAnimationFrame(step);
+    };
+    ['wheel', 'touchstart', 'keydown'].forEach((ev) => window.addEventListener(ev, stopAuto, { passive: true }));
+    p1.classList.add('openable');
+    p1.setAttribute('role', 'button');
+    p1.setAttribute('tabindex', '0');
+    p1.setAttribute('aria-label', 'Davetiyeyi aç');
+    p1.addEventListener('click', unfold);
+    p1.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); unfold(); }
+    });
   }
 
   // Fade-in sections as they enter the viewport
