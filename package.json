@@ -1,0 +1,11 @@
+{
+  "name": "event-rsvp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Turkish wedding invitation with RSVP form, hosted on GitHub Pages, answers saved to Google Sheets",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build.js",
+    "preview": "node build.js && node preview.js"
+  }
+}
