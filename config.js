@@ -22,7 +22,7 @@ module.exports = {
   maxGuestsPerRsvp: 5,
 
   // Background music, no ads: path of an audio file inside public/ (e.g. 'music.mp3'). Takes priority over YouTube.
-  musicFile: '',
+  musicFile: 'music.mp3',
   // Fallback: YouTube video ID (shows ads sometimes). Leave '' to disable.
   musicVideoId: 'KNZH-emehxA',
 
